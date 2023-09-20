@@ -69,9 +69,9 @@ def category_posts(request, category_slug):
     )
     post_list = category.posts(
         manager='post_objects'
-        ).annotate(
+    ).annotate(
             comment_count=Count('comment')
-            ).all()
+    ).all()
     post_list = post_list.order_by('-pub_date')
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
@@ -120,7 +120,7 @@ class PostsUpdateView(LoginRequiredMixin, UpdateView):
             kwargs={
                 'post_id': self.kwargs['post_id']
             }
-            )
+        )
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):

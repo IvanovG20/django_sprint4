@@ -12,12 +12,12 @@ class CommentForm(forms.ModelForm):
     def clean(self):
         super().clean()
         send_mail(
-                subject='Comment',
-                message='Вы оставили коментарий!',
-                from_email='blogicum_mail@mail.com',
-                recipient_list=['admin@blogicum.not'],
-                fail_silently=True,
-            )
+            subject='Comment',
+            message='Вы оставили коментарий!',
+            from_email='blogicum_mail@mail.com',
+            recipient_list=['admin@blogicum.not'],
+            fail_silently=True,
+        )
 
 
 class PostForm(forms.ModelForm):
