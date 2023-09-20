@@ -70,7 +70,7 @@ def category_posts(request, category_slug):
     post_list = category.posts(
         manager='post_objects'
     ).annotate(
-            comment_count=Count('comment')
+        comment_count=Count('comment')
     ).all()
     post_list = post_list.order_by('-pub_date')
     paginator = Paginator(post_list, 10)
