@@ -107,4 +107,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
 EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
 
+EMAIL_CONST = 'blogicum_mail@mail.com'
+
+IMAGE_CONST = 'posts_image'
+
 LOGIN_REDIRECT_URL = 'blog:index'
+
+ALLOWED_HOSTS =[
+    'www.tagiil7.pythonanywhere.com',
+    'tagiil7.pythonanywhere.com',
+]

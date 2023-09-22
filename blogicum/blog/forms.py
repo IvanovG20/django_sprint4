@@ -1,6 +1,7 @@
 from django import forms
-from .models import Post, Comment
 from django.core.mail import send_mail
+from .models import Post, Comment
+from blogicum.settings import EMAIL_CONST
 
 
 class CommentForm(forms.ModelForm):
@@ -14,7 +15,7 @@ class CommentForm(forms.ModelForm):
         send_mail(
             subject='Comment',
             message='Вы оставили коментарий!',
-            from_email='blogicum_mail@mail.com',
+            from_email=EMAIL_CONST,
             recipient_list=['admin@blogicum.not'],
             fail_silently=True,
         )

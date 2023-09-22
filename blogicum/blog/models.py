@@ -2,6 +2,7 @@ import datetime as dt
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from blogicum.settings import IMAGE_CONST
 
 User = get_user_model()
 
@@ -82,7 +83,7 @@ class Post(PublishedModel):
                                  null=True,
                                  verbose_name='Категория',
                                  related_name='posts',)
-    image = models.ImageField('Фото', upload_to='posts_image', blank=True)
+    image = models.ImageField('Фото', upload_to=IMAGE_CONST, blank=True)
     objects = models.Manager()
     post_objects = PostManager()
 
@@ -97,9 +98,12 @@ class Post(PublishedModel):
 class Comment(models.Model):
     text = models.TextField('Комментарий')
     post = models.ForeignKey(Post, on_delete=models.CASCADE,
-                             related_name='comment')
-    created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+                             related_name='comments')
+    created_at = models.DateTimeField(auto_now_add=True,)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='comments')
 
     class Meta:
         ordering = ('created_at',)
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'Комментарии'
