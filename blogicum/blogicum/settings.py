@@ -113,7 +113,7 @@ IMAGE_CONST = 'posts_image'
 
 LOGIN_REDIRECT_URL = 'blog:index'
 
-ALLOWED_HOSTS =[
+ALLOWED_HOSTS = [
     'www.tagiil7.pythonanywhere.com',
     'tagiil7.pythonanywhere.com',
 ]
