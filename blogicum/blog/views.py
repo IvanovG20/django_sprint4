@@ -80,7 +80,7 @@ def category_posts(request, category_slug):
         manager='post_objects'
     ).annotate(
         comment_count=Count('comments')
-    ).all()
+    )
     post_list = post_list.order_by('-pub_date')
     paginator = Paginator(post_list, PAGINATE_CONST)
     page_number = request.GET.get('page')
@@ -125,13 +125,16 @@ class PostDeleteView(UpdateDeleteMixin, LoginRequiredMixin, DeleteView):
 class ProfileListView(ListView):
     model = Post
     template_name = 'blog/profile.html'
-    paginate_by = 10
+    paginate_by = PAGINATE_CONST
     slug_url_kwarg = 'username'
 
-    def get_queryset(self):
-        self.author = get_object_or_404(
+    def get_object(self):
+        return get_object_or_404(
             User, username=self.kwargs['username']
         )
+
+    def get_queryset(self):
+        self.author = self.get_object()
         return self.author.posts.order_by(
             '-pub_date'
         ).annotate(comment_count=Count('comments'))
