@@ -1,14 +1,15 @@
 from datetime import date
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.views.generic import (CreateView, UpdateView,
-                                  DeleteView, ListView, DetailView)
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
-from .models import Post, Category, Comment, User
 from .forms import CommentForm, PostForm
+from .models import Category, Comment, Post, User
 
 LIMIT_CONST = 5
 

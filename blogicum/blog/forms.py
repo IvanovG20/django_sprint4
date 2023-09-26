@@ -1,7 +1,9 @@
 from django import forms
 from django.core.mail import send_mail
+
 from blogicum.settings import EMAIL_CONST
-from .models import Post, Comment
+
+from .models import Comment, Post
 
 
 class CommentForm(forms.ModelForm):
